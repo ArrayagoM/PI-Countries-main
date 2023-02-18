@@ -1,0 +1,42 @@
+.contenedor{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #80deea1e;
+    align-items: center;
+    left: 2%;
+}
+
+.title {
+    position: absolute;
+    left: 32%;
+    top: 25px;
+    display: block;
+    font-family: monospace;
+    white-space: nowrap;
+    border-right: 4px solid;
+    width: 27ch;
+
+    animation: typing 3s steps(12),
+    blink .5s infinite step-end alternate ;
+    overflow: hidden;
+}
+@keyframes typing {
+    from { width: 0;}
+}
+@keyframes blink {
+    50% { border-color: transparent;}
+}
+
+.subtitle{
+    position: absolute;
+    left: 37%;
+    top: 58px;
+}
+
+.content_p{
+    position: absolute;
+    top: 110px;
+}
