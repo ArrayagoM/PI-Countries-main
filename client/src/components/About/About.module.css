@@ -4,7 +4,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: #80deea1e;
+    background-color: #61d9e9c0;
     align-items: center;
     left: 2%;
 }
@@ -18,6 +18,7 @@
     white-space: nowrap;
     border-right: 4px solid;
     width: 27ch;
+    color: aliceblue;
 
     animation: typing 3s steps(12),
     blink .5s infinite step-end alternate ;
@@ -34,9 +35,11 @@
     position: absolute;
     left: 37%;
     top: 58px;
+    color: aliceblue;
 }
 
 .content_p{
     position: absolute;
     top: 110px;
+    color: aliceblue;
 }
