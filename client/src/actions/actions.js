@@ -7,6 +7,8 @@ export function cambiarPagina(page){
      } 
 }
 
+
+
 export function receiveCountries(countries){
      return {
           type: 'GET_ALL_COUNTRIES',
@@ -88,3 +90,19 @@ export function getCountryId(id){
           }
      }
 }
+
+export const getCountriesByPopulation = (population) => async (dispatch) => {
+     try {
+       const res = await axios.get(`http://localhost:3001/countries/population/${population}`);
+       dispatch({
+         type: 'GET_COUNTRIES_BY_POPULATION',
+         payload: res.data,
+       });
+     } catch (err) {
+       dispatch({
+         type: 'COUNTRY_ERROR',
+         payload: { msg: err.response.statusText, status: err.response.status },
+       });
+     }
+   };
+   

@@ -126,24 +126,25 @@ router.get('/:id', async (req,res) => {
      }
 });
 
-// //Retorna el pais con el nombre coincidente pasado por params. GET http://localhost:3001/countries/name/mexico
+router.get('/population/:pop', async (req, res) => {
+     const { pop } = req.params;
+     try {
+       const country = await Country.findOne({
+         include: {
+           model: Activity
+         },
+         where: {
+           population: pop
+         }
+       });
+       res.json(country ? country : []);
+     } catch (e) {
+       res.send(e);
+     }
+   });
+   
 
-// router.get('/name/:nameCountry', async (req,res) => {
-//      try{
-//           const {nameCountry} = req.params;
-//           let country = await Country.findAll({
-//                where: {
-//                     name: nameCountry,
-//                }
-//           });
-//           res.json(country.length !== 0 ? country : "No existe pais con ese nombre");
-//      }catch(e){
-//           res.send(e);
-//      }
-// });
 
-// router.get('/?name', (req,res) => {
 
-// });
 
 module.exports = router;   

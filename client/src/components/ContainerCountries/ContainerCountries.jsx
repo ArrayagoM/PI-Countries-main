@@ -5,12 +5,12 @@ import {getCountries, getCountryName, setContinent} from '../../actions/actions'
 import Paginator from '../Paginator/Paginator';
 import s from './ContainerCountries.module.css';
 import searchStyle from './SearchBar.module.css';
-
+import loadingGIF from '../../loadingGIF/loadingGIF';
 
 export default function ContainerCountries() {
   // Este state guarda el nombre escrito en la barra de busqueda
   const [country, setCountry] = useState('');
-
+  const [isLoading, setIsLoading] = useState(true);
   // Guarda la opcion de order seleccionado. Por defecto se usa en AZ
   const [order, setOrder] = useState('AZ');
   // const [continent, setContinent] = useState('');
@@ -28,7 +28,8 @@ export default function ContainerCountries() {
   // Al crearse, busca todos los countries y actualiza el componente cuando se actualiza el state de country, order o continent
   // Si el state country tiene algo, se despacha la busqueda por el country escrito.
   // O busca todos los countries
-  useEffect(()=>{      
+  useEffect(()=>{  
+    setIsLoading(true);    
     if(country){
       dispatch(getCountryName(country));
     }else{
@@ -73,11 +74,13 @@ export default function ContainerCountries() {
 
               </div>
       </div>
-
+      
       {/* Div que contiene todos los countries */}
       <div className={`${s.containerCards}`}>
-        {countries.length > 0 ? countries.map((country, index) =>{
+        
+{isLoading && countries.length > 0 ? countries.map((country, index) =>{
         // Se crea un CardCountry por cada country en el state. Si es la pagina 1, solo muestra 9 countries
+       <loadingGIF/>
         if(actualPage === 1 & index <9){
           return (<CardCountry 
             key={country.id} 

@@ -5,6 +5,7 @@ const initialState = {
      continent: "",
      country: [],
      countries: [],
+     population:[],
      activities: [],
      actualPage: 1
 }
@@ -18,6 +19,7 @@ export default function reducer(state = initialState, action){
                          ...state,
                          actualPage: 1,
                          countries: action.payload.filter(country => country.continent === state.continent),
+                         
                     }
                }else           
                
@@ -25,8 +27,15 @@ export default function reducer(state = initialState, action){
                return {
                     ...state,
                     actualPage: 1,
-                    countries: action.payload
+                    countries: action.payload,
+                    population: action.payload
                }
+          case 'GET_COUNTRIES_BY_POPULATION':
+               return {
+                    ...state,
+                    population: action.payload,
+               };
+
                // Retorna el country que coincida con el id
           case "GET_COUNTRY_ID":
                return {

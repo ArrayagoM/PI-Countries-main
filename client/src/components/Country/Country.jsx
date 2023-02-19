@@ -2,8 +2,7 @@ import React from "react";
 import {Link} from 'react-router-dom'
 import s from './Country.module.css';
 
-export default function Country(props){
-     const {id ,flag, name, code, continent, population} = props;
+export default function Country({id, flag, name, code, continent, population}){
 
 
      // Componente Card que muestra los datos de su respectivo pais
