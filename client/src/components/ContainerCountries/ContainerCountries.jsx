@@ -1,37 +1,58 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import CardCountry from '../Country/Country';
-import {getCountries, getCountryName, setContinent} from '../../actions/actions'
+import {getCountries, getCountryName, setContinent,getCountriesByPopulation} from '../../reducers/action'
 import Paginator from '../Paginator/Paginator';
 import s from './ContainerCountries.module.css';
 import searchStyle from './SearchBar.module.css';
-import loadingGIF from '../../loadingGIF/loadingGIF';
+// import loadingGIF from '../../loadingGIF/loadingGIF';
 
 export default function ContainerCountries() {
   // Este state guarda el nombre escrito en la barra de busqueda
   const [country, setCountry] = useState('');
+  const [popu, setPopu] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   // Guarda la opcion de order seleccionado. Por defecto se usa en AZ
   const [order, setOrder] = useState('AZ');
   // const [continent, setContinent] = useState('');
-  
-  // Traigo el state Countries del store de Redux
+
   const countries = useSelector(state => state.countries);
-  // Traigo el state de la pagina actual del store de Redux
   const actualPage = useSelector(state => state.actualPage);
-  // Traigo el state continent del store
   const continent = useSelector(state => state.continent);
+  const population = useSelector(state => state.population)
+
+
+console.log("Population: ",population);
+console.log("Countries: ", countries);
 
   // Uso el Hook de React-Redux useDispatch
   const dispatch = useDispatch();
     
+const handleChange = (e) => {
+const value  = e.target.value;
+if (value == isNaN) {
+  return setPopu(value);
+}else {
+  setCountry(value)
+}
+}
+const handleKeyDown = (event) => {
+  if (event.key === "Enter") {
+ handleChange(event)
+  }
+};
+
+
   // Al crearse, busca todos los countries y actualiza el componente cuando se actualiza el state de country, order o continent
   // Si el state country tiene algo, se despacha la busqueda por el country escrito.
   // O busca todos los countries
   useEffect(()=>{  
     setIsLoading(true);    
     if(country){
-      dispatch(getCountryName(country));
+      country !== isNaN ? 
+      dispatch(getCountryName(country))
+      :
+      dispatch(getCountriesByPopulation(country))
     }else{
       dispatch(getCountries(order));
     }
@@ -50,7 +71,14 @@ export default function ContainerCountries() {
       {/* Div que contiene la barra de busqueda */}
       <div className={searchStyle.container}>
               <div>
-                <input onChange={(e)=> setCountry(e.target.value)} type="text" name="searchCountry" placeholder="Buscar Pais" className={searchStyle.searchBar}/>
+                <input 
+                onChange={handleChange} 
+                type="text" 
+                name="searchCountry" 
+                placeholder="Buscar Pais" 
+                className={searchStyle.searchBar}
+                onKeyDown={handleKeyDown}
+                />
               </div>
               <div className={searchStyle.divOptions}>
                 <div>
@@ -78,9 +106,9 @@ export default function ContainerCountries() {
       {/* Div que contiene todos los countries */}
       <div className={`${s.containerCards}`}>
         
-{isLoading && countries.length > 0 ? countries.map((country, index) =>{
+{isLoading   && countries.length > 0 ? countries.map((country, index) =>{
         // Se crea un CardCountry por cada country en el state. Si es la pagina 1, solo muestra 9 countries
-       <loadingGIF/>
+      
         if(actualPage === 1 & index <9){
           return (<CardCountry 
             key={country.id} 

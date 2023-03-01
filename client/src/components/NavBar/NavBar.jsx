@@ -10,8 +10,8 @@ export default function Nav(){
                          <NavLink to="/" className={s.link}>Logout</NavLink>
                     </div>
                     <div className={`${s.links}`}>
-                         <NavLink to="/countries" style={({isActive}) => isActive ? {color: '#3CA6A6', fontWeight: '700'} : {color: 'white', fontWeight: '400'}} className={s.link}>Paises</NavLink>
-                         <NavLink to="/addActivity" style={({isActive}) => isActive ? {color: '#3CA6A6', fontWeight: '700'} : {color: 'white', fontWeight: '400'}} className={s.link}>Agregar Actividad</NavLink>
+                        <div className={s.page}> <NavLink to="/countries" style={({isActive}) => isActive ? {color: '#3CA6A6', fontWeight: '700'} : {color: 'white', fontWeight: '400'}} className={s.linkp}>Paises</NavLink></div>
+                         <div className={s.activity}><NavLink to="/addActivity" style={({isActive}) => isActive ? {color: '#3CA6A6', fontWeight: '700'} : {color: 'white', fontWeight: '400'}} className={s.linka}>Agregar Actividad</NavLink></div>
                     </div>
                </div>
           </div>

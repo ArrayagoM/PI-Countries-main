@@ -16,7 +16,7 @@ function App() {
         <Routes>
             <Route exact path="/" element={<LandingPage/>} />
             <Route path="/countries" element={<ContainerCountries/>}/>
-            <Route path="/addActivity" element={<CreateActivity/>}/>
+            <Route path="/addactivity" element={<CreateActivity/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path="/countries/info/:id" element={<CountryInfo/>}/>
         </Routes>

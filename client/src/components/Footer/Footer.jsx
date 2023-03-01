@@ -9,15 +9,15 @@ export default function Footer(){
                <div className={`${s.container} ${s.footerDiv}`}>
                     <div className={s.footerInfo}>
                          <p>Proyecto API <span>Countries</span></p>
-                         <p><Link to='/about' className={s.name}>Juan Martin Arrayago</Link> - Henry</p>
+                         <p><Link to='/about' target="_blank" className={s.name}>Juan Martin Arrayago</Link> - Henry</p>
                     </div>
                   <div className={s.links}>
                   <div className={s.footerLinkL}>                     
-                         <a href="https://www.linkedin.com/in/juan-martin-arrayago/">
+                         <a target="_blank" href="https://www.linkedin.com/in/juan-martin-arrayago/">
                               <SiLinkedin/>
                          </a>
                     </div> <div className={s.footerLinkG}>                     
-                         <a href="https://github.com/ArrayagoM">
+                         <a target="_blank" href="https://github.com/ArrayagoM">
                               <SiGithub/>
                          </a>
                     </div>

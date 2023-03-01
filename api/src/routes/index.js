@@ -11,5 +11,7 @@ const router = Router();
 
 router.use('/countries', countryRoutes);
 router.use('/activity', activityRoutes);
+// router.use('/activity', require('./activity.js'));
+
 
 module.exports = router;

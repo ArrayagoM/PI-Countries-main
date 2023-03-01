@@ -1,4 +1,10 @@
 import axios from 'axios';
+import { COUNTRY_ERROR,
+     GET_ALL_COUNTRIES,
+      GET_COUNTRIES_BY_POPULATION,
+       GET_COUNTRY_ID, GET_COUNTRY_NAME,
+        SET_CONTINENT 
+    } from './action-type';
 
 export function cambiarPagina(page){
      return{
@@ -11,28 +17,34 @@ export function cambiarPagina(page){
 
 export function receiveCountries(countries){
      return {
-          type: 'GET_ALL_COUNTRIES',
+          type: GET_ALL_COUNTRIES,
           payload: countries
      }
 }
 
 export function receiveCountryID(country){
      return {
-          type: 'GET_COUNTRY_ID',
+          type: GET_COUNTRY_ID,
           payload: country
      }
+}
+export function recivePopulation(country){
+     return {
+          type: GET_COUNTRIES_BY_POPULATION,
+          payload: country
+}
 }
 
 export function receiveCountryName(country){
      return {
-          type: 'GET_COUNTRY_NAME',
+          type: GET_COUNTRY_NAME,
           payload: country
      }
 }
 
 export function setContinent(continent){
      return {
-          type: 'SET_CONTINENT',
+          type: SET_CONTINENT,
           payload: continent
      }
 }
@@ -91,18 +103,16 @@ export function getCountryId(id){
      }
 }
 
-export const getCountriesByPopulation = (population) => async (dispatch) => {
+export const getCountriesByPopulation = (population) =>  {
+     return async (dispatch) => {
      try {
-       const res = await axios.get(`http://localhost:3001/countries/population/${population}`);
-       dispatch({
-         type: 'GET_COUNTRIES_BY_POPULATION',
-         payload: res.data,
-       });
+       const res =( await axios.get(`http://localhost:3001/countries/population/${population}`)).data;
+       dispatch(recivePopulation(population))
      } catch (err) {
        dispatch({
-         type: 'COUNTRY_ERROR',
+         type: COUNTRY_ERROR,
          payload: { msg: err.response.statusText, status: err.response.status },
        });
      }
    };
-   
+}

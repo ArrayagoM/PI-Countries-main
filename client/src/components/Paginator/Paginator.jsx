@@ -1,5 +1,5 @@
 import React from 'react';
-import {cambiarPagina} from '../../actions/actions';
+import {cambiarPagina} from '../../reducers/action';
 import {useDispatch, useSelector} from 'react-redux'
 import s from './Paginator.module.css'
 

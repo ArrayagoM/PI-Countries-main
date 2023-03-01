@@ -11,19 +11,24 @@ const router = Router();
 router.post('/', async (req,res) => {
      // Hago destructuring de la data mandada por body
      const {idCountries, name, difficulty, duration, season} = req.body;
-     try{
+      try{
+          console.log(req.body);
           const newActivity = await Activity.create({
-               name, difficulty, duration, season
+               idCountries, name, difficulty, duration, season
           });
+          
           // idCountries es un array de ids de los Countries. Por cada id, se le agrega la actividad posteada
           idCountries.forEach(id => {
                newActivity.addCountries(id);
+               console.log("Dataos guardados correctamente");
           });          
           res.json(newActivity);
      }catch(e){
           res.send(e);
      }
+    
 });
+ 
 
 router.get('/:idActivity', async (req,res) => {
      try{
@@ -39,5 +44,15 @@ router.get('/:idActivity', async (req,res) => {
      }
 });
 
+
+
+router.get('/', async(req, res) => {
+     try {
+          const activity = await Activity.findAll();
+          res.status(200).json(activity)
+     } catch (error) {
+          
+     }
+})
 
 module.exports = router; 

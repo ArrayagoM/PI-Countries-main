@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {getCountries, setContinent} from '../../actions/actions'
+import {getCountries, setContinent} from '../../reducers/action'
 import axios from 'axios';
 import s from './CreateActivity.module.css'
 
@@ -70,7 +70,9 @@ export default function CreateActivity(){
      async function handlerSubmit(e){
           e.preventDefault();
           
-          await axios.post('http://localhost:3001/activity/', activity);
+       try {
+          await axios.post('http://localhost:3001/activity', activity);
+          console.log(activity);
           setInputActivity({
                idCountries: [],
                name: '',
@@ -78,6 +80,10 @@ export default function CreateActivity(){
                duration: '',
                season: '',
           })
+          alert('Los datos se enviaron correctamente')
+       } catch (error) {
+          alert('Error al enviar los datos');
+       }
      }
 
      return (

@@ -2,8 +2,8 @@
      position: relative;
      justify-content: space-evenly;
      flex-wrap: wrap;
-     width: 1200px;
-     margin: auto;     
+     width: 90%; /* usa un porcentaje en lugar de un ancho fijo */
+     margin: auto;
 }
 
 .footer{
@@ -28,28 +28,54 @@
 }
 
 .footerInfo{
-     line-height: .5;
+     line-height: 1.5; /* aumenta el line-height para mayor legibilidad en dispositivos más pequeños */
+     color: white; /* cambia el color de texto a blanco */
 }
 
 .footerLinkL a{
-    
      color: white;
-     left: 70%;
-}
-.footerLinkG a{
-    
+     margin-left: 10px; /* separa un poco más los iconos de los links */
      
-     margin: 12px;
+}
+
+.footerLinkL{
+     margin: 10px;
+}
+
+.footerLinkG a{
+     margin-right: 10px; /* separa un poco más los iconos de los links */
      color: white;
-     left: 80%;
 }
 
 .name {
      color: rgb(243, 240, 240);
 }
+
 .links{
      position: absolute;
      display: flex;
-     left: 90%;
+     right: 5%; /* usa un porcentaje en lugar de un valor fijo */
      align-items: center;
+}
+
+@media(max-width: 768px){
+     .footer{
+          position: relative;
+     }
+     .links{
+          position: static;
+     }
+     .footerDiv{
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+     }
+     .footerLinkL{
+          margin-bottom: 10px;
+          margin: 10px;
+     }
+     .footerInfo{
+          text-align: center;
+          color: white; /* cambia el color de texto a blanco */
+     }
 }

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import { useParams, Link } from 'react-router-dom';
-import {getCountryId} from '../../actions/actions'
+import {getCountryId} from '../../reducers/action'
 import s from './CountryInfo.module.css';
 
 export default function CountryInfo(){
